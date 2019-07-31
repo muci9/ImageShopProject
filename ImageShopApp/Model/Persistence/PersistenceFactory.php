@@ -4,6 +4,7 @@
 namespace ImageShopApp\Model\Persistence;
 use ImageShopApp\Model\Persistence\Finder\AbstractFinder;
 use ImageShopApp\Model\Persistence\Finder\ProductFinder;
+use ImageShopApp\Model\Persistence\Finder\TagFinder;
 use PDO;
 
 class PersistenceFactory
@@ -36,5 +37,8 @@ class PersistenceFactory
             return ProductFinder::class;
         if ($entityClass === "User")
             return null;
+        if ($entityClass === "Tag")
+            return TagFinder::class;
+        return null;
     }
 }
