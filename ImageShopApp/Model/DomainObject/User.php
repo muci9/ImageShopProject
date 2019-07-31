@@ -4,7 +4,7 @@
 namespace ImageShopApp\Model\DomainObject;
 
 
-class User
+class User extends AbstractUser
 {
     private $id;
     private $name;
