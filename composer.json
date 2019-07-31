@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {
+      "ImageShopApp\\" : "ImageShopApp/"
+    }
+  },
+  "require": {
+    "ext-pdo": "*"
+  }
+}
