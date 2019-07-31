@@ -5,6 +5,7 @@ namespace ImageShopApp\Model\Persistence;
 use ImageShopApp\Model\Persistence\Finder\AbstractFinder;
 use ImageShopApp\Model\Persistence\Finder\ProductFinder;
 use ImageShopApp\Model\Persistence\Finder\TagFinder;
+use ImageShopApp\Model\Persistence\Finder\UserFinder;
 use PDO;
 
 class PersistenceFactory
@@ -33,11 +34,12 @@ class PersistenceFactory
 
     private static function getFinderClassName(string $entityClass) : string
     {
-        if ($entityClass === "Product")
+        $entityClass = mb_strtolower($entityClass);
+        if ($entityClass === "product")
             return ProductFinder::class;
-        if ($entityClass === "User")
-            return null;
-        if ($entityClass === "Tag")
+        if ($entityClass === "user")
+            return UserFinder::class;
+        if ($entityClass === "tag")
             return TagFinder::class;
         return null;
     }
