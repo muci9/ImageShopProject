@@ -14,4 +14,7 @@ switch ($request) {
         break;
     case '/product/show':
         break;
+    case '/product/post-upload':
+        ProductController::postUpload();
+        break;
 }
