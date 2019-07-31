@@ -24,7 +24,7 @@
 
         <div class="content">
             <h1>Upload page</h1>
-            <form action="/product/upload" method="post" enctype="multipart/form-data">
+            <form action="/product/post-upload" method="post" enctype="multipart/form-data">
                 <label for="upload_image">Upload image</label>
                 <input id="upload_image" type="file" name="image" />
                 <br />
