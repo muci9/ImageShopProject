@@ -18,7 +18,7 @@ class ProductController
          * @var ProductFinder $productFinder
          */
         $productCollection = $productFinder->findAllProducts();
-        require_once "/home/ciprianmuresan/PhpstormProjects/ImageShopWebsite/ImageShopApp/View/Templates/home-page.php";
+        require_once "ImageShopApp/View/Templates/home-page.php";
     }
 
     public static function uploadProduct() {
