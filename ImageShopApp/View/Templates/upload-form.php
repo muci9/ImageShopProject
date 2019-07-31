@@ -59,13 +59,10 @@
                 <br />
                 <label for="tags">Tags</label><br />
                 <select multiple id="tags">
-                    <option value="nature">Nature</option>
-                    <option value="city">City</option>
-                    <option value="wildlife">Wildlife</option>
-                    <option value="people">People</option>
-                    <option value="sports">Sports</option>
-                    <option value="abstract">Abstract</option>
-                    <option value="events">Events</option>
+                    <?php foreach ($tagCollection as $tag): ?>
+                    <option value=<?=$tag->getTagName()?> >
+                        <?=ucfirst($tag->getTagName())?></option>
+                    <?php endforeach; ?>
                 </select>
                 <br />
                 <input id="submit_button" type="submit" value="Submit image" />
