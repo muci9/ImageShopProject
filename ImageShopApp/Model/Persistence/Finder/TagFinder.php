@@ -14,6 +14,9 @@ class TagFinder extends AbstractFinder
         $statement = $this->getPdo()->prepare($sql);
         $statement->execute();
         $rows = $statement->fetchAll();
+        if (!$rows) {
+            return [];
+        }
         $tags = $this->translateToTagsArray($rows);
         return $tags;
     }

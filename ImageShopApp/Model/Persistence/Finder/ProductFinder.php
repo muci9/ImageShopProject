@@ -14,6 +14,9 @@ class ProductFinder extends AbstractFinder
         $statement = $this->getPdo()->prepare($sql);
         $statement->execute();
         $rows = $statement->fetchAll();
+        if (!$rows) {
+            return [];
+        }
         $products = $this->translateToProductsArray($rows);
         return $products;
     }
