@@ -30,4 +30,9 @@ class ProductController
         $formRenderer = new UploadFormRenderer($tagCollection);
         $formRenderer->render();
     }
+
+    public static function postUpload() {
+        //TODO
+        // validate form, save image, create tiers, redirect to home-page
+    }
 }
