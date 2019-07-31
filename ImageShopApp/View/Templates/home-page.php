@@ -6,7 +6,7 @@
 </head>
 <body>
     <ul>
-        <?php foreach ($itemCollection as $item): ?>
+        <?php foreach ($productCollection as $item): ?>
         <li><?=$item->getTitle() ?></li>
         <?php endforeach; ?>
     </ul>
