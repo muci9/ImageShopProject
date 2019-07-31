@@ -4,12 +4,14 @@
 namespace ImageShopApp\Model\Persistence\Finder;
 
 
+use ImageShopApp\Model\DomainObject\AbstractUser;
+use ImageShopApp\Model\DomainObject\NullUser;
 use ImageShopApp\Model\DomainObject\User;
 use PDO;
 
 class UserFinder extends AbstractFinder
 {
-    public function findUserByEmail(string $email) : User
+    public function findUserByEmail(string $email) : AbstractUser
     {
         $sql = "SELECT * FROM user WHERE email=:email";
         $statement = $this->getPdo()->prepare($sql);
@@ -17,7 +19,7 @@ class UserFinder extends AbstractFinder
         $statement->execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
         if (!$row) {
-            return null;
+            return new NullUser;
         }
         return $this->translateToUser($row);
     }
