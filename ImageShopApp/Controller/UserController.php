@@ -4,8 +4,10 @@
 namespace ImageShopApp\Controller;
 
 
+use ImageShopApp\Model\DomainObject\User;
 use ImageShopApp\Model\Persistence\Finder\UserFinder;
 use ImageShopApp\Model\Persistence\PersistenceFactory;
+use ImageShopApp\Model\DomainObject\NullUser;
 
 class UserController
 {
@@ -16,10 +18,13 @@ class UserController
          * @var UserFinder $userFinder
          */
         $user = $userFinder->findUserByEmail('b');
-        if (!$user) {
+        if (get_class($user) === NullUser::class) {
             echo "User not found";
             die;
         }
+        /**
+         * @var User $user
+         */
         echo $user->getName();
         die;
     }
