@@ -7,7 +7,7 @@ use ImageShopApp\Controller\ProductController;
 
 switch ($request) {
     case '/':
-        //ProductController::showProducts();
+        ProductController::showProducts();
         break;
     case '/product/show':
         break;
