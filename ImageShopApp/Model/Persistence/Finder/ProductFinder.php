@@ -20,6 +20,7 @@ class ProductFinder extends AbstractFinder
 
     private function translateToProduct(array $row) : Product
     {
+        $row['capture_date'] = new \DateTime($row['capture_date']);
         return new Product($row['title'], $row['description'], $row['camera_specs'], $row['capture_date'], $row['thumbnail_path'], $row['user_id'], $row['id'], $row['tags']);
     }
 
