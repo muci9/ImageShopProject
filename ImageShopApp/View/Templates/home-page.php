@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Homepage</title>
-</head>
+
 <body>
     <ul>
         <?php foreach ($productCollection as $item): ?>
