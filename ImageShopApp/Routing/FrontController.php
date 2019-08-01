@@ -40,15 +40,16 @@ class FrontController implements FrontControllerInterface
             $path = self::BASE_PATH;
         }
         // Get rid of @
-        @list($controller, $action, $params) = explode("/", $path, 3);
+        @list($controller, $action) = explode("/", $path, 2);
         if (isset($controller)) {
             $this->setController($controller);
         }
         if (isset($action)) {
             $this->setAction($action);
         }
+        $params = parse_url($_SERVER["REQUEST_URI"], PHP_URL_QUERY);
         if (isset($params)) {
-            $this->setParams(explode("/", $params));
+            $this->setParams(explode("&", $params));
         }
     }
 
@@ -76,11 +77,14 @@ class FrontController implements FrontControllerInterface
 
     public function setParams(array $params)
     {
-        $this->params = $params;
+        foreach ($params as $param) {
+            @list($key, $value) = explode('=', $param);
+            $this->params[$key] = $value;
+        }
         return $this;
     }
 
     public function run() {
-        call_user_func_array(array(new $this->controller, $this->action), $this->params);
+        call_user_func(array(new $this->controller($this->params), $this->action));
     }
 }
