@@ -19,7 +19,21 @@ class UserFinder extends AbstractFinder
         $statement->execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
         if (!$row) {
-            return new NullUser;
+            return new NullUser();
+        }
+        return $this->translateToUser($row);
+    }
+
+    public function findUserByLogin(string $email, string $password)
+    {
+        $sql = "SELECT * FROM user WHERE email=:email AND passwd=:passwd";
+        $statement = $this->getPdo()->prepare($sql);
+        $statement->bindValue('email', $email, PDO::PARAM_STR);
+        $statement->bindValue('passwd', $password, PDO::PARAM_STR);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        if (!$row) {
+            return new NullUser();
         }
         return $this->translateToUser($row);
     }
