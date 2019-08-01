@@ -13,6 +13,13 @@ use ImageShopApp\View\Renderers\RegisterFormRenderer;
 
 class UserController
 {
+    private $params = [];
+
+    public function __construct(array $params)
+    {
+        $this->params = $params;
+    }
+
     public function show()
     {
         $userFinder = PersistenceFactory::createFinder('User');

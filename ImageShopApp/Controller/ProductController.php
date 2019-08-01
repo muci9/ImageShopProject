@@ -12,7 +12,14 @@ use ImageShopApp\View\Renderers\UploadFormRenderer;
 
 class ProductController
 {
-    public function show(array $params = []) {
+    private $params;
+
+    public function __construct(array $params = null)
+    {
+        $this->params = $params;
+    }
+
+    public function show() {
         $productFinder = PersistenceFactory::createFinder("Product");
         /**
          * @var ProductFinder $productFinder
