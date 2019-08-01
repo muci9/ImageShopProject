@@ -11,6 +11,7 @@ class UserMapper extends AbstractMapper
     {
         if ($user->getId() === null) {
             $this->insert($user);
+            $user->setId($this->getPdo()->lastInsertId());
             return;
         }
         $this->update($user);
@@ -22,7 +23,7 @@ class UserMapper extends AbstractMapper
             'id'    => $user->getId(),
             'name'  => $user->getName(),
             'email' => $user->getEmail(),
-            'password' => $user->getPassword()
+            'password' => $user->getPassword(),
         ];
         return $row;
     }
