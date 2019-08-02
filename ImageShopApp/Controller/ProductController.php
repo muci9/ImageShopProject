@@ -31,7 +31,7 @@ class ProductController
         $renderer->render($productCollection);
     }
 
-    public static function uploadProduct() {
+    public static function upload() {
         $tagFinder = PersistenceFactory::createFinder("Tag");
         /**
          * @var TagFinder $tagFinder
