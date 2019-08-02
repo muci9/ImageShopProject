@@ -90,4 +90,13 @@ class UserController
         $userMapper->save(new User($name, $email, $password));
         header("Location: /");
     }
+
+    public function logout()
+    {
+        session_start();
+        if (isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+        }
+        header("Location: /");
+    }
 }
