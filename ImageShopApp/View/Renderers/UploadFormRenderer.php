@@ -5,16 +5,9 @@ namespace ImageShopApp\View\Renderers;
 
 class UploadFormRenderer implements IRenderer
 {
-    private $tags;
-
-    public function __construct(array $tags)
+    public function render($tagCollection) : void
     {
-        $this->tags = $tags;
-    }
-
-    public function render() : void
-    {
-        $tagCollection = $this->tags;
+        require_once "ImageShopApp/View/Templates/header.php";
         require_once "ImageShopApp/View/Templates/upload-form.php";
     }
 }

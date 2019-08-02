@@ -6,8 +6,10 @@ namespace ImageShopApp\Controller;
 
 use ImageShopApp\Model\DomainObject\User;
 use ImageShopApp\Model\Persistence\Finder\UserFinder;
+use ImageShopApp\Model\Persistence\Mapper\UserMapper;
 use ImageShopApp\Model\Persistence\PersistenceFactory;
 use ImageShopApp\Model\DomainObject\NullUser;
+use ImageShopApp\View\Renderers\HomepageRenderer;
 use ImageShopApp\View\Renderers\LoginFormRenderer;
 use ImageShopApp\View\Renderers\RegisterFormRenderer;
 
@@ -51,15 +53,15 @@ class UserController
          * @var UserFinder $userFinder
          */
         $email = $_POST['email'];
-        //$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $password = $_POST['password'];
         $user = $userFinder->findUserByLogin($email, $password);
         if (get_class($user) === NullUser::class) {
-            echo "Not found";
-            die;
+            $renderer = new LoginFormRenderer();
+            $renderer->render(["User not found."]);
         }
+        session_start();
         $_SESSION['user'] = $user->getId();
-        echo "Logged in.";
+        header("Location: /");
     }
 
     public function register()
@@ -72,16 +74,20 @@ class UserController
     {
         $name = $_POST['name'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $userFinder = PersistenceFactory::createFinder("user");
         /**
          * @var UserFinder $userFinder
          */
         $user = $userFinder->findUserByEmail($email);
-        if (get_class($user) !== NullUser::class) {
-            echo "User already exists.";
-            die;
+        if (get_class($user) != NullUser::class) {
+            header("Location: /user/show");
         }
-        echo "New user";
+        /**
+         * @var UserMapper $userMapper
+         */
+        $userMapper = PersistenceFactory::createMapper("user");
+        $userMapper->save(new User($name, $email, $password));
+        header("Location: /");
     }
 }

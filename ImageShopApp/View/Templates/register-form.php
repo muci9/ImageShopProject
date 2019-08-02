@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="=UTF-8">
-        <title>Register</title>
-    </head>
-    <body>
     <form action="/user/verifyRegister" method="POST">
         <label for="name">Name</label><br/>
         <input id="name" type="text" name="name"/>

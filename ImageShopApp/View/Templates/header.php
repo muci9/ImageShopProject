@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Artists-book</title>
+    <title>Image Shop</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -13,13 +13,17 @@
         }
         .bg {
             /* The image used */
-            background-image: url("/background.jpg");
+            background-image: url("/background.jpeg");
             /* Full height */
             height: 100%;
             /* Center and scale the image nicely */
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+        }
+        ul, a {
+            color: black;
+            font-size: 2vh;
         }
     </style>
 </head>
@@ -28,27 +32,25 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">Artists-book</a>
+            <a class="navbar-brand" style="font-size: 5vh; color: black" href="/">Image Shop</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <?php if (isset($_SESSION[\MyApp\Model\Helper\Form\UserField::getId()])) :
-                ?>
+            <?php session_start(); if (isset($_SESSION['user'])) : ?>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="/user/profile">My Profile
+                    <a class="dropdown-toggle" data-toggle="dropdown">My Profile
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="user/showUploads">My products</a></li>
                         <li><a href="user/showOrders">My orders</a></li>
                         <li><a href="user/showProfile">Account</a></li>
-
                     </ul>
                 </li>
                 <li><a href="/product/upload">Upload image</a></li>
                 <li><a href="/user/logout">Logout</a></li>
             <?php else : ?>
-                <li><a href="/user/loginPage">Login</a></li>
+                <li><a href="/user/login">Login</a></li>
+                <li><a href="/user/register"><Register></Register></a></li>
             <?php endif; ?>
-
         </ul>
     </div>
 </nav>

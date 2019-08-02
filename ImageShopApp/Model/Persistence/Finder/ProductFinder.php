@@ -21,6 +21,19 @@ class ProductFinder extends AbstractFinder
         return $products;
     }
 
+    public function findProductById(int $id) : ?Product
+    {
+        $sql = "SELECT * FROM product WHERE id=:id";
+        $statement = $this->getPdo()->prepare($sql);
+        $statement->bindValue("id", $id, PDO::PARAM_INT);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        if (!$row) {
+            return null;
+        }
+        return $this->translateToProduct($row);
+    }
+
     private function translateToProduct(array $row) : Product
     {
         $row['capture_date'] = new \DateTime($row['capture_date']);

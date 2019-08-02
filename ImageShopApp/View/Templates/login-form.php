@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
     <form action="/user/verifyLogin" method="POST">
         <label for="email">Email</label>
         <input id="email" type="email" name="email" />
