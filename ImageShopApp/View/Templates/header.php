@@ -49,7 +49,7 @@
                 <li><a href="/user/logout">Logout</a></li>
             <?php else : ?>
                 <li><a href="/user/login">Login</a></li>
-                <li><a href="/user/register"><Register></Register></a></li>
+                <li><a href="/user/register">Register</a></li>
             <?php endif; ?>
         </ul>
     </div>
